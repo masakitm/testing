@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script src="js/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		{{ counter }}
+		<button v-on:click="counter += 1">add 1</button>
+		<p>ボタンがクリックされた回数は {{ counter }}だよ！</p>
+	</div>
+
+	<div id="app1">
+		<button @click="greet">Greet</button>
+	</div>
+
+	<div id="app2">
+		<input type="text" v-model="message"><br>
+		<button @click="say(message)">{{ message }}</button>
+	</div>
+
+	<script>
+		var app = new Vue({
+			el:"#app",
+			data:{
+				counter:0
+			},
+		});
+
+		var app1 = new Vue({
+			el:"#app1",
+			data:{
+				name: "Vue.js"
+			},
+			methods:{
+				greet: function(e){
+					alert("Hello " + this.name + "!")
+					if(e){
+						alert(e.target.tagName)
+					}
+
+					console.log(e);
+				}
+			}
+		});
+
+		var app2 = new Vue({
+			el:"#app",
+			methods:{
+				say:function(e){
+					alert(e);
+				}
+			}
+		});
+	</script>
+</body>
+</html>

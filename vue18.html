@@ -9,28 +9,19 @@
 </head>
 <body>
 	<div id="app">
-		<div v-for="item of userProfile">
-			{{ item }}
-		</div>
-		<button @click="addData">
-			btn
-		</button>
+		<form action=""></form>
+		<button type="submit" @click="warn('Form cannot be submitted yet.',$event)"></button>
 	</div>
 
 	<script>
 		var app = new Vue({
 			el:"#app",
 			data:{
-				userProfile: {
-					name: 'Anika'
-				}
 			},
 			methods:{
-				addData:function(){
-					this.userProfile = Object.assign({}, this.userProfile, {
-  					age: 27,
-  					favoriteColor: 'Vue Green'
-					})
+				warn:function(message,event){
+					if(event) event.preventDefault()
+					alert(message)
 				}
 			}
 		});

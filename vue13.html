@@ -9,27 +9,33 @@
 </head>
 <body>
 	<div id="app">
-		<div v-for="item of userProfile">
-			{{ item }}
+		<ul>
+			<li v-for="n in numbers">{{ n }}</li>
+		</ul>
+
+		<ul>
+			<li v-for="n in evenNumbers(numbers)">{{ n }}</li>
+		</ul>
+
+		<ul>
+			<li v-for="n in 10">{{ n }}</li>
+		</ul>
+
+		<div>
+			<button @click="evenNumbers">偶数</button>
 		</div>
-		<button @click="addData">
-			btn
-		</button>
 	</div>
 
 	<script>
 		var app = new Vue({
 			el:"#app",
 			data:{
-				userProfile: {
-					name: 'Anika'
-				}
+				 numbers: [ 1, 2, 3, 4, 5 ]
 			},
 			methods:{
-				addData:function(){
-					this.userProfile = Object.assign({}, this.userProfile, {
-  					age: 27,
-  					favoriteColor: 'Vue Green'
+				evenNumbers: function (numbers) {
+					return numbers.filter(function(number){
+						return number % 2 === 0
 					})
 				}
 			}

@@ -9,30 +9,23 @@
 </head>
 <body>
 	<div id="app">
-		<div v-for="item of userProfile">
-			{{ item }}
-		</div>
-		<button @click="addData">
-			btn
-		</button>
+		<ul>
+			<template v-for="item in messages">
+				<li>{{ item.luna }}</li>
+				<div>　ルナだよ</div>
+			</template>
+		</ul>
 	</div>
 
 	<script>
 		var app = new Vue({
 			el:"#app",
 			data:{
-				userProfile: {
-					name: 'Anika'
-				}
+				messages:[
+					{luna:"ルナだよ"},
+					{luna:"ルナじゃないよ"}
+				]
 			},
-			methods:{
-				addData:function(){
-					this.userProfile = Object.assign({}, this.userProfile, {
-  					age: 27,
-  					favoriteColor: 'Vue Green'
-					})
-				}
-			}
 		});
 	</script>
 </body>

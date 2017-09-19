@@ -9,11 +9,16 @@
 </head>
 <body>
 	<div id="app">
-		<div v-for="item of userProfile">
-			{{ item }}
+		<div>
+			<input type="text" v-model="message">
 		</div>
-		<button @click="addData">
-			btn
+		<button @click="say(message)">
+			<template v-if="message">
+				{{ message }} で決定します
+			</template>
+			<template v-else>
+				入力してください
+			</template>
 		</button>
 	</div>
 
@@ -21,16 +26,11 @@
 		var app = new Vue({
 			el:"#app",
 			data:{
-				userProfile: {
-					name: 'Anika'
-				}
+				message:""
 			},
 			methods:{
-				addData:function(){
-					this.userProfile = Object.assign({}, this.userProfile, {
-  					age: 27,
-  					favoriteColor: 'Vue Green'
-					})
+				say:function(message){
+					alert(message);
 				}
 			}
 		});
