@@ -21,27 +21,25 @@
 	  </table>
 	</div>
 	<script>
-	window.onload = function() {
-var vm = new Vue({
-	el:"#vue-container",
-	data:{
-	 inputText:"",
-	 items:[
-		{name:"Todoリストの"},
-		{name:"デモ"},
-		{name:"です"}
-	 ]
-	},
-	methods:{
-		itemAdd: function(){
-			this.items.push({name: this.inputText});
-		},
-		itemDelete: function(item){
-			this.items.$remove(item);
-		}
-	}
-});
-}
+		var vm = new Vue({
+			el:"#vue-container",
+			data:{
+			 inputText:"",
+			 items:[
+				{name:"Todoリストの"},
+				{name:"デモ"},
+				{name:"です"}
+			 ]
+			},
+			methods:{
+				itemAdd: function(){
+					this.items.push({name: this.inputText});
+				},
+				itemDelete: function(item){
+					this.items.$remove(item);
+				}
+			}
+		});
 	</script>
 </body>
 </html>
