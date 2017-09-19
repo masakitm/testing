@@ -9,30 +9,29 @@
 </head>
 <body>
 	<div id="app">
-		<div v-bind:style="styleObject" @click="changeStyle" >
-			 ルナだよ
+		<ul>
+			<li v-for=" todo of todos ">
+				{{ todo }}
+			</li>
+		</ul>
+		<div>
+			<input type="text" v-model="addNew">
+			<button v-on:click="addTodos">add Todos</button>
 		</div>
 	</div>
-
 	<script>
 		var app = new Vue({
 			el:"#app",
 			data:{
-				styleObject: {
-					color: 'red',
-					fontSize: 30,
-					style: true
+				addNew:"",
+				todos:{
+
 				}
 			},
 			methods:{
-				changeStyle:function(){
-					if( this.styleObject.style == true ){
-						this.styleObject.color = 'blue'
-						this.styleObject.fontSize = '10'
-					} else{
-						this.styleObject.color = 'red'
-						this.styleObject.fontSize = '30'
-					}
+				addTodos:function(){
+					var newTodo = this.addNew
+					this.todos.unshift(newTodo)
 				}
 			}
 		});

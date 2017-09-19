@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<div>
+			<template v-if="loginType === 'username'">
+				<label>Username</label>
+				<input type="text" placeholder="name" key="username-input">
+			</template>
+
+			<template v-else>
+				<label>Email</label>
+				<input type="text" placeholder="e-mail" key="email-input">
+			</template>
+
+			<select v-model="loginType">
+				<option value="username">username</option>
+				<option value="email">email</option>
+			</select>
+		</div>
+	</div>
+
+	<script>
+		
+
+		var app = new Vue({
+			el:"#app",
+			data:{
+				loginType: "username"
+			}
+		});
+	</script>
+</body>
+</html>

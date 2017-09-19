@@ -1,6 +1,7 @@
 var app = new Vue({
 	el:"#app",
 	data:{
-		isActive:true
+		activeColor: 'red',
+		fontSize: 30
 	}
 });
