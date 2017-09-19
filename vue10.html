@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
+</head>
+<body>
+	<div id="vue-container">
+	 <input v-model="inputText" type="text" />
+	 <input class="btn" type="submit" value="追加" v-on:click="itemAdd"/>
+	 <table>
+	  <tbody>
+	   <tr v-for="item in items">
+	    <td>{{item.name}}</td>
+	    <td v-on:click="itemDelete(item)" class="delete">削除</td>
+	   </tr>
+	  </tbody>
+	  </table>
+	</div>
+	<script>
+	window.onload = function() {
+var vm = new Vue({
+	el:"#vue-container",
+	data:{
+	 inputText:"",
+	 items:[
+		{name:"Todoリストの"},
+		{name:"デモ"},
+		{name:"です"}
+	 ]
+	},
+	methods:{
+		itemAdd: function(){
+			this.items.push({name: this.inputText});
+		},
+		itemDelete: function(item){
+			this.items.$remove(item);
+		}
+	}
+});
+}
+	</script>
+</body>
+</html>
