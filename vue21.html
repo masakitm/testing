@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
+	<style>
+		.wrapper{
+			display: -webkit-flex;
+			display: -ms-flex;
+			display: flex;
+			flex-wrap:wrap;
+			justify-content: space-between;
+			width: 50vw;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<h1>{{ title }}</h1>
+
+		<template v-if="items">
+			<div>
+				絞り込み
+				<input type="text" v-model="searchTxt">
+				<button>絞り込みメモ</button>
+			</div>
+			<div class="wrapper">
+				<div v-for="(item,index) in items">
+					<div class="itemSingle">
+						<div class="itemSingle__img">
+							<img :src="item.img" :alt="item.name">
+						</div>
+						<div class="itemSingle__name">{{ item.name }}</div>
+						<div class="itemSingle__price">{{ commaSet(item.price) }}</div>
+					</div>
+				</div>
+			</div>
+		</template>
+	</div>
+
+	<script>
+		const jsonData = [
+			{
+				img:"http://placehold.jp/100x100.png",
+				name:"商品01",
+				price:10000
+			},
+			{
+				img:"http://placehold.jp/100x100.png",
+				name:"商品02",
+				price:2000
+			},
+			{
+				img:"http://placehold.jp/100x100.png",
+				name:"商品03",
+				price:1000000
+			},
+			{
+				img:"http://placehold.jp/100x100.png",
+				name:"商品04",
+				price:10000
+			},
+			{
+				img:"http://placehold.jp/100x100.png",
+				name:"商品05",
+				price:2000
+			},
+			{
+				img:"http://placehold.jp/100x100.png",
+				name:"商品06",
+				price:1000000
+			},
+		];
+
+		const app = new Vue({
+			el:"#app",
+			data:{
+				searchTxt:"",
+				title:"配列との戦い　-その歴史2-",
+				items: jsonData
+			},
+			methods:{
+				commaSet:function(price){
+					return price.toLocaleString('ja-JP', {"style":"currency", "currency":"JPY"});
+				}
+			}
+		});
+	</script>
+</body>
+</html>
