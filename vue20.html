@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<h1>{{ title }}</h1>
+		<div v-for="(item,index) in messages">
+			<div>{{ item.icon01 }} - {{ item.message01 }}</div>
+			<div>{{ item.icon02 }} - {{ item.message02 }}</div>
+		</div>
+	</div>
+
+	<script>
+		var app = new Vue({
+			el:"#app",
+			data:{
+				title:"配列との戦い　-その歴史-",
+				messages:[
+					{
+						icon01:"Q.",
+						message01:"どこへ行けばいいんですか？",
+						icon02:"A.",
+						message02:"行きたいとこへ勝手に行けよ"
+					},
+					{
+						icon01:"Q.",
+						message01:"虚しいときはどうすりゃいいの",
+						icon02:"A.",
+						message02:"教えて 教えて"
+					},
+
+				]
+			},
+		});
+	</script>
+</body>
+</html>

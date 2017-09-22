@@ -9,23 +9,23 @@
 </head>
 <body>
 	<div id="app">
-		<div >
-			<a @click.stop="funcA">
-				 押してね
-			</a>
-		</div>
-
-		<script>
-			var app = new Vue({
-				el:"#app",
-				data:{
-
-				},
-				methods:{
-
-				}
-			});
-		</script>
+		<button @click="greet">Greet</button>
 	</div>
+
+	<script>
+		var app = new Vue({
+			el:"#app",
+			data:{
+				name: "It's me"
+			},
+			methods:{
+				greet:function(e){
+					if(e){
+						console.log(e.target.innerHTML)
+					}
+				}
+			}
+		});
+	</script>
 </body>
 </html>
