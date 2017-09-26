@@ -22,24 +22,27 @@
 	<div id="app">
 		<h1>{{ title }}</h1>
 
-		<template v-if="items">
-			<div>
-				絞り込み
-				<input type="text" v-model="searchTxt">
-				<button>絞り込みメモ</button>
-			</div>
-			<div class="wrapper">
-				<div v-for="(item,index) in items">
-					<div class="itemSingle">
-						<div class="itemSingle__img">
-							<img :src="item.img" :alt="item.name">
-						</div>
-						<div class="itemSingle__name">{{ item.name }}</div>
-						<div class="itemSingle__price">{{ commaSet(item.price) }}</div>
+		<div>
+			<select v-model="searchTxt">
+				<option value="">カテゴリー</option>
+				<option v-for="(value,key) in categories" :value="key">
+					{{ value }}
+				</option>
+			</select>
+		</div>
+
+		<div class="wrapper">
+			<div v-if="!searchTxt || searchTxt == item.category" v-for="(item,index) in items">
+				<div class="itemSingle">
+					<div class="itemSingle__img">
+						<img :src="item.img" :alt="item.name">
 					</div>
+					<div class="itemSingle__name">{{ item.name }}</div>
+					<div class="itemSingle__price">{{ commaSet(item.price) }}</div>
 				</div>
 			</div>
-		</template>
+		</div>
+
 	</div>
 
 	<script>
@@ -47,41 +50,48 @@
 			{
 				img:"http://placehold.jp/100x100.png",
 				name:"商品01",
-				price:10000
+				price:10000,
+				category:"1"
 			},
 			{
 				img:"http://placehold.jp/100x100.png",
 				name:"商品02",
-				price:2000
+				price:2000,
+				category:"2",
 			},
 			{
 				img:"http://placehold.jp/100x100.png",
 				name:"商品03",
-				price:1000000
+				price:1000000,
+				category:"3",
 			},
 			{
 				img:"http://placehold.jp/100x100.png",
 				name:"商品04",
-				price:10000
+				price:10000,
+				category:"1",
 			},
 			{
 				img:"http://placehold.jp/100x100.png",
 				name:"商品05",
-				price:2000
-			},
-			{
-				img:"http://placehold.jp/100x100.png",
-				name:"商品06",
-				price:1000000
+				price:2000,
+				category:"2",
 			},
 		];
 
 		const app = new Vue({
 			el:"#app",
 			data:{
-				searchTxt:"",
+				searchTxt: '',
+				categories: {
+				    1:'カテゴリー1',
+				    2:'カテゴリー2',
+				    3:'カテゴリー3'
+				},
 				title:"配列との戦い　-その歴史2-",
 				items: jsonData
+			},
+			computed:{
 			},
 			methods:{
 				commaSet:function(price){
