@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<button v-on:click="warn('Form cannot be submitted yet.',$event)">
+			submit!
+		</button>
+		<a v-on:click="warn('Form cannot be submitted yet.',$event)">
+			Atag!
+		</a>
+		<a href="http://google.com/" @click.stop.prevent="doThis">
+			this is link!
+		</a>
+
+		<div @click.prevent.self="doThat">
+			<span>asdf</span>
+			ボタンじゃないよ
+		</div>
+	</div>
+
+	<script>
+		const app = new Vue({
+			el:"#app",
+			data:{
+
+			},
+			methods:{
+				warn: function(message,event){
+					if(event.target.tagName == "button"){
+						if (event) event.preventDefault()
+				    alert(message)
+					} else{
+						if (event) event.preventDefault()
+				    alert(event.target.innerText)
+					}
+				},
+				doThis: function(e){
+					var name = e.target.tagName
+					alert(name)
+				},
+				doThat: function(e){
+					alert("これは"+e.target.tagName+"だよ")
+				}
+			}
+		});
+	</script>
+</body>
+</html>
