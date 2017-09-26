@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+</head>
+<body>
+	<div id="app">
+		<form action="">
+			<div>
+				<div>
+					姓<input type="text" v-model="info.name01"><br>
+					名<input type="text" v-model="info.name02">
+				</div>
+				<div>
+					Email<br>
+					<input type="email" v-model="info.email">
+				</div>
+				<div>
+					都道府県<br>
+					<select v-model="info.address00">
+						<option value="">選択してください</option>
+						<option value="東京都">東京都</option>
+						<option value="埼玉県">埼玉県</option>
+						<option value="神奈川県">神奈川県</option>
+					</select>
+				</div>
+				<div>
+					<select v-model="info.address01" >
+						<option value="">選択してください</option>
+						<option v-for="option in options" :value="option.value">
+							{{ option.text }}
+						</option>
+					</select>
+				</div>
+				<div>
+					お問い合わせ内容<br>
+					<textarea v-model="info.text" cols="30" rows="10"></textarea>
+				</div>
+
+				<!--
+				<div>
+					<button @click.prevent="confirmOk">入力内容確認</button>
+				</div>
+				-->
+
+				<div>
+					入力内容確認
+					<div v-if="info.name01 || info.name02">
+						お名前 : {{ info.name01 }} {{ info.name02 }}
+					</div>
+					<div v-if="info.email">
+						Email : {{ info.email }}
+					</div>
+					<div v-if="info.address00">
+						都道府県 : {{ info.address00 }}
+					</div>
+					<div v-if="info.address01">
+						市区町村 : {{ info.address01 }}
+					</div>
+					<div v-if="info.text">
+						お問い合わせ内容 : {{ info.text }}
+					</div>
+
+					<div>
+						上記の内容で送信します
+						<button type="submit">
+							送信
+						</button>
+					</div>
+				</div>
+			</div>
+		</form>
+
+	</div>
+	<script>
+		const app = new Vue({
+			el:"#app",
+			data:{
+				confirm:false,
+				info:{
+					name01:"",
+					name02:"",
+					email:"",
+					address00:"",
+					address01:"",
+					text:""
+				},
+				options:[
+					{ text:"杉並区",value:"suginamiku" },
+					{ text:"中野区",value:"nakanoku" },
+				]
+			},
+			methods:{
+				confirmOk:function(){
+					this.confirm = true
+				}
+			}
+		});
+	</script>
+</body>
+</html>
