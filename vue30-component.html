@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>asdf</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<child my-message="child" msg="child_child"></child>
+	</div>
+
+
+<script>
+	Vue.component('child',{
+		props:['myMessage'],
+		template:'<span>{{ myMessage }}</span>'
+	});
+
+	new Vue({
+		el:"#app"
+	});
+</script>
+</body>
+</html>
