@@ -1,0 +1,101 @@
+html,body{
+	text-align: center;
+}
+
+$gray:#dddddd;
+$lgray:#eeeeee;
+
+img{
+	max-width:100%;
+	height: auto;
+}
+
+.wrapper{
+	text-align: center;
+	padding: 6rem;
+}
+
+.howto{
+	position: absolute;
+	top: 1rem;
+	left: 1rem;
+}
+
+header{
+	display: block;
+	background: $lgray;
+}
+
+.titleWrap{
+	padding:1em;
+	margin-bottom: 2rem;
+
+	h1{
+		font-size: 5rem;
+	}
+}
+
+.seacher{
+	border-bottom:1px solid $gray;
+	padding-bottom: 4rem;
+	position: relative;
+	text-align: center;
+	font-size: 28px;
+
+	> input{
+		padding:1rem 2rem;
+		width: 50vw;
+		border-radius:5px;
+		border:1px solid $gray;
+		color: #666;
+	}
+}
+
+.postsWrap{
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: -20px;
+
+	&__single{
+		width: calc(100% / 7);
+	  padding-left: 1rem;
+		margin-bottom: 6rem;
+
+		@media only screen and (max-width: 1024px){
+			&{
+				width: calc(100% / 4);
+			}
+		}
+		@media only screen and (max-width: 768px){
+			&{
+				width: calc(100% / 3);
+			}
+		}
+	}
+}
+
+.postChainer{
+	margin-top: 1rem;
+
+	&__single{
+		line-height: 1.5;
+	}
+}
+
+.notFound{
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.tagName{
+	position: fixed;
+	right: 1rem;
+	bottom: 1rem;
+	border-radius: 5px;
+	background: #eee;
+	padding:1rem 1.5rem;
+	line-height: 1;
+}

@@ -4,42 +4,78 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
+	<title>danbooruer</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/danbooru.css">
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script src="https://unpkg.com/vue"></script>
 </head>
 <body>
 	<div id="app">
-		<div><input v-model="tags" placeholder="検索検索ゥ！"><button @click="tagsSearch(tags)">get posts</button></div>
-		<div class="postsWrap">
-			<template v-if="jsonData">
-				<div class="postsWrap__single" v-for="item in jsonData">
-					<a :href="item.id" target="_blank">
-						<img :src="item.preview_file_url">
-					</a>
+		<header>
+			<div class="titleWrap">
+				<h1 class="titleWrap__single">danbooruer</h1>
+			</div>
 
-					<div v-if="item.tag_string_character" @click="tagsSearch(item.tag_string_character)">
-						he / she!
-					</div>
-					<div v-if="item.tag_string_artist" @click="tagsSearch(item.tag_string_artist)">
-						this artist!
-					</div>
+			<div class="seacher">
+				<input v-model="tags" @keyup.enter="tagsSearch(tags)" placeholder="ex:large_breasts">
+			</div>
+		</header>
+
+
+		<div class="wrapper">
+			<template v-if="tags">
+				<div class="tagName">
+					<a :href="tagLink(tags)" target="_blank">
+						{{ tags }}
+					</a>
 				</div>
 			</template>
 
-			<template v-else>
-				そんなタグないわよ！
-			</template>
+			<div class="postsWrap">
+				<template v-if="jsonData.length">
+					<div class="postsWrap__single" v-for="item in jsonData">
+						<div class="postImg">
+							<a :href="item.id" target="_blank"><img :src="item.preview_file_url"></a>
+						</div>
+
+						<div class="postChainer">
+							<div class="postChainer__single" v-if="item.tag_string_character" @click="tagsCheck(item.tag_string_character)">
+								he / she!
+							</div>
+							<div class="postChainer__single" v-if="item.tag_string_artist" @click="tagsCheck(item.tag_string_artist)">
+								this artist!
+							</div>
+
+							<!--
+							<div class="postChainer__single" v-if="item.source">
+								<a :href="item.source" target="_blank">
+									src
+								</a>
+							</div>
+							-->
+						</div>
+					</div>
+				</template>
+
+				<template v-else>
+					<div class="notFound">
+						<img src="img/notfound.jpg" alt="そんなもの ウチにはないよ…">
+					</div>
+				</template>
+			</div>
 		</div>
 	</div>
 
 
 <script>
+	const danbooru = "https://danbooru.donmai.us/";
 	const app = new Vue({
 		el:"#app",
 		data:{
-			tags:"ban",
-			url:"https://danbooru.donmai.us/posts.json?tags=ban",
+			isActive:false,
+			tags:"",
+			url:danbooru+"posts.json?limit=42",
 			jsonData:""
 		},
 		mounted:function(){
@@ -51,16 +87,28 @@
 				.then(response => {
 					this.jsonData = response.data;
 					this.jsonData.map(function(value){
-						value["preview_file_url"] = "https://danbooru.donmai.us"+value["preview_file_url"];
-						value["id"] = "https://danbooru.donmai.us/posts/"+value["id"];
+						value["preview_file_url"] = danbooru+value["preview_file_url"];
+						value["id"] = danbooru+value["id"];
 						return value;
 					});
 				});
 			},
 			tagsSearch:function(tags){
 				this.tags = tags;
-				this.url = "https://danbooru.donmai.us/posts.json?tags="+this.tags;
+				this.url = danbooru+"posts.json?limit=42&tags="+this.tags;
 				this.getPosts(this.url);
+			},
+			tagsCheck:function(tags){
+				if(~tags.indexOf("\u0020")){
+					this.tags = tags.substring(0,tags.indexOf("\u0020"));
+				} else{
+					this.tags = tags
+				}
+				this.tagsSearch(this.tags);
+			},
+			tagLink:function(tags){
+				var utf8str = encodeURI(tags);
+				return danbooru + "?tags=" + utf8str;
 			}
 		}
 	});
