@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+	<div id="app">
+		<div><input v-model="tags" placeholder="検索検索ゥ！"><button @click="tagsSearch(tags)">get posts</button></div>
+		<div class="postsWrap">
+			<template v-if="jsonData">
+				<div class="postsWrap__single" v-for="item in jsonData">
+					<a :href="item.id" target="_blank">
+						<img :src="item.preview_file_url">
+					</a>
+
+					<div v-if="item.tag_string_character" @click="tagsSearch(item.tag_string_character)">
+						he / she!
+					</div>
+					<div v-if="item.tag_string_artist" @click="tagsSearch(item.tag_string_artist)">
+						this artist!
+					</div>
+				</div>
+			</template>
+
+			<template v-else>
+				そんなタグないわよ！
+			</template>
+		</div>
+	</div>
+
+
+<script>
+	const app = new Vue({
+		el:"#app",
+		data:{
+			tags:"ban",
+			url:"https://danbooru.donmai.us/posts.json?tags=ban",
+			jsonData:""
+		},
+		mounted:function(){
+			this.getPosts(this.url);
+		},
+		methods:{
+			getPosts:function(url){
+				axios.get(url)
+				.then(response => {
+					this.jsonData = response.data;
+					this.jsonData.map(function(value){
+						value["preview_file_url"] = "https://danbooru.donmai.us"+value["preview_file_url"];
+						value["id"] = "https://danbooru.donmai.us/posts/"+value["id"];
+						return value;
+					});
+				});
+			},
+			tagsSearch:function(tags){
+				this.tags = tags;
+				this.url = "https://danbooru.donmai.us/posts.json?tags="+this.tags;
+				this.getPosts(this.url);
+			}
+		}
+	});
+</script>
+</body>
+</html>
