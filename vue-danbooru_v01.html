@@ -17,6 +17,18 @@
 			<img :src="modalUrl" alt="">
 		</div>
 
+		<template v-if="isLoading">
+			<div class="loading">
+				<div class="spinner">
+				  <div class="rect1"></div>
+				  <div class="rect2"></div>
+				  <div class="rect3"></div>
+				  <div class="rect4"></div>
+				  <div class="rect5"></div>
+				</div>
+			</div>
+		</template>
+
 		<header>
 			<div class="titleWrap">
 				<h1 class="titleWrap__single"><a href="">danbooruer</a></h1>
@@ -30,7 +42,7 @@
 		<div class="wrapper">
 			<template v-if="tags">
 				<div class="tagName">
-					<a :href="tagLink(tags)" target="_blank">
+					<a :href="tagPageLink(tags)" target="_blank">
 						{{ tags }}
 					</a>
 				</div>
@@ -55,11 +67,6 @@
 							<div class="postChainer__single" v-if="item.tag_string_copyright" @click="tagsCheck(item.tag_string_copyright)">
 								this copyright!
 							</div>
-							<!--
-							<div class="postChainer__single">
-								<a :href="item.id" target="_blank">link</a>
-							</div>
-							-->
 						</div>
 					</div>
 				</template>
@@ -75,15 +82,15 @@
 
 
 <script>
-	const danbooru = "https://danbooru.donmai.us/";
+	const danbooru = "https://danbooru.donmai.us";
 	const app = new Vue({
 		el:"#app",
 		data:{
+			isLoading:"",
 			tags:"",
-			url:danbooru+"posts.json?limit=42",
+			url:danbooru+"/"+"posts.json?limit=210",
 			modalUrl:"",
 			jsonData:"",
-
 			modalSwitch:false
 		},
 		mounted:function(){
@@ -91,20 +98,22 @@
 		},
 		methods:{
 			getPosts:function(url){
+				this.loadingOn();
 				axios.get(url)
 				.then(response => {
+					this.loadingOff();
 					this.jsonData = response.data;
 					this.jsonData.map(function(value){
-						value["preview_file_url"] = danbooru+value["preview_file_url"];
+						value["preview_file_url"] = danbooru+"/"+value["preview_file_url"];
 						value["file_url"] = danbooru+value["file_url"];
-						value["id"] = danbooru+"posts/"+value["id"];
+						value["id"] = danbooru+"/"+"posts/"+value["id"];
 						return value;
 					});
 				});
 			},
 			tagsSearch:function(tags){
 				this.tags = tags;
-				this.url = danbooru+"posts.json?limit=42&tags="+this.tags;
+				this.url = danbooru + "/" +"posts.json?limit=105&tags="+this.tags;
 				this.getPosts(this.url);
 			},
 			tagsCheck:function(tags){
@@ -115,9 +124,9 @@
 				}
 				this.tagsSearch(this.tags);
 			},
-			tagLink:function(tags){
+			tagPageLink:function(tags){
 				var utf8str = encodeURI(tags);
-				return danbooru + "?tags=" + utf8str;
+				return danbooru + "/" + "?tags=" + utf8str;
 			},
 			modalFunc:function(url){
 				if(this.modalSwitch != true){
@@ -127,6 +136,12 @@
 					this.modalSwitch = false;
 					this.modalUrl = "";
 				}
+			},
+			loadingOn:function(){
+				this.isLoading = true;
+			},
+			loadingOff:function(){
+				this.isLoading = false;
 			}
 		}
 	});
