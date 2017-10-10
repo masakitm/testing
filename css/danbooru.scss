@@ -135,7 +135,7 @@ header{
 }
 
 .modalWrap{
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100vw;
@@ -145,13 +145,18 @@ header{
 	z-index:100;
 	overflow: hidden;
 
-	> img{
+	> *{
 		position: absolute;
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%,-50%);
 		width: auto;
-		height:90%;
+		height: auto;
+
+		img{
+			width: auto;
+			max-height: 90vh;
+		}
 
 		@media only screen and(max-width: 1024px){
 			width: 90vw;

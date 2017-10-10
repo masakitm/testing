@@ -12,8 +12,13 @@
 </head>
 <body>
 	<div id="app">
-		<div class="modalWrap" @click="modalFunc()" v-show="modalSwitch">
-			<img :src="modalUrl" alt="">
+		<div class="modalWrap" @click.self="modalFunc()" v-show="modalSwitch">
+			<template v-if="isMovie">
+				<video :src="modalUrl" controls autoplay></video>
+			</template>
+			<template v-else>
+				<a :href="modalUrl" download><img :src="modalUrl" alt=""></a>
+			</template>
 		</div>
 
 		<template v-if="isLoading">
@@ -86,6 +91,7 @@
 		el:"#app",
 		data:{
 			isLoading:"",
+			isMovie:"",
 			tags:"",
 			url:danbooru+"/"+"posts.json?limit=210",
 			modalUrl:"",
@@ -130,10 +136,18 @@
 			modalFunc:function(url){
 				if(this.modalSwitch != true){
 					this.modalSwitch = true;
+					this.setModalContent(url);
 					this.modalUrl = url;
 				} else{
 					this.modalSwitch = false;
 					this.modalUrl = "";
+				}
+			},
+			setModalContent:function(url){
+				if( url.match(/mp4|webm/)){
+					this.isMovie = true
+				} else{
+					this.isMovie = false
 				}
 			},
 			setLoading:function(status){
