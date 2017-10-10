@@ -26,7 +26,7 @@
 
 		<header>
 			<div class="titleWrap">
-				<h1 class="titleWrap__single"><a href="">danbooruer</a></h1>
+				<h1 class="titleWrap__single"><a @click.prevent="tagReset()">danbooruer</a></h1>
 			</div>
 
 			<div class="seacher">
@@ -50,7 +50,8 @@
 						<div class="postImg">
 							<div>
 								<a :href="item.id" target="_blank">
-									<img :src="item.preview_file_url">
+									<!-- <img :src="item.preview_file_url"> -->
+									<img :src="item.large_file_url" alt="">
 								</a>
 							</div>
 						</div>
@@ -74,7 +75,7 @@
 						<img src="img/notfound.jpg" alt="そんなもの ウチにはないよ…">
 					</div>
 				</template>
-				
+
 			</div>
 		</div>
 	</div>
@@ -108,6 +109,7 @@
 						if(value["preview_file_url"] != undefined){
 							value["preview_file_url"] = danbooru+"/"+value["preview_file_url"];
 						}
+						value["large_file_url"] = danbooru+value["large_file_url"];
 						value["file_url"] = danbooru+value["file_url"];
 						value["id"] = danbooru+"/"+"posts/"+value["id"];
 						return value;
@@ -141,6 +143,10 @@
 				} else if(status == "off"){
 					this.isLoading = false;
 				}
+			},
+			tagReset:function(){
+				this.tags = ""
+				this.getPosts(danbooru+"/"+"posts.json?limit=105");
 			}
 		}
 	});
