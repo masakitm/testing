@@ -44,14 +44,12 @@
 			</template>
 
 			<div class="postsWrap">
-
 				<template v-if="jsonData.length">
 					<div class="postsWrap__single" v-for="item in jsonData" v-show="item.preview_file_url">
 						<div class="postImg">
 							<div>
 								<a :href="item.id" target="_blank">
-									<!-- <img :src="item.preview_file_url"> -->
-									<img :src="item.large_file_url" alt="">
+									<img :src="item.preview_file_url" alt="">
 								</a>
 							</div>
 						</div>
@@ -79,7 +77,6 @@
 			</div>
 		</div>
 	</div>
-
 
 <script>
 	const danbooru = "https://danbooru.donmai.us";
@@ -110,7 +107,11 @@
 							value["preview_file_url"] = danbooru+"/"+value["preview_file_url"];
 						}
 						if(value["large_file_url"] != undefined){
-							value["large_file_url"] = danbooru+value["large_file_url"];
+							if( value["large_file_url"].match(/mp4|webm/) ){
+								value["large_file_url"] = value["preview_file_url"];
+							} else{
+								value["large_file_url"] = danbooru+value["large_file_url"];
+							}
 						}
 						value["file_url"] = danbooru+value["file_url"];
 						value["id"] = danbooru+"/"+"posts/"+value["id"];
