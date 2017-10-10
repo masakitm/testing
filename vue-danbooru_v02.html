@@ -54,7 +54,7 @@
 
 			<div class="postsWrap">
 				<template v-if="jsonData.length">
-					<div class="postsWrap__single" v-for="item in jsonData">
+					<div class="postsWrap__single" v-for="item in jsonData" v-show="item.preview_file_url">
 						<div class="postImg">
 							<div @click="modalFunc(item.file_url)">
 								<img :src="item.preview_file_url">
@@ -109,7 +109,9 @@
 					this.setLoading("off");
 					this.jsonData = response.data;
 					this.jsonData.map(function(value){
-						value["preview_file_url"] = danbooru+"/"+value["preview_file_url"];
+						if(value["preview_file_url"] != undefined){
+							value["preview_file_url"] = danbooru+"/"+value["preview_file_url"];
+						}
 						value["file_url"] = danbooru+value["file_url"];
 						value["id"] = danbooru+"/"+"posts/"+value["id"];
 						return value;
@@ -134,6 +136,7 @@
 				return danbooru + "/" + "?tags=" + utf8str;
 			},
 			modalFunc:function(url){
+				//
 				if(this.modalSwitch != true){
 					this.modalSwitch = true;
 					this.setModalContent(url);
@@ -144,6 +147,7 @@
 				}
 			},
 			setModalContent:function(url){
+				//動画形式かどうかを判定
 				if( url.match(/mp4|webm/)){
 					this.isMovie = true
 				} else{
@@ -151,6 +155,7 @@
 				}
 			},
 			setLoading:function(status){
+				//ローディング表示を切り替え
 				if( status == "on" ){
 					this.isLoading = true;
 				} else if(status == "off"){

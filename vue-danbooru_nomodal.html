@@ -35,7 +35,7 @@
 		</header>
 
 		<div class="wrapper">
-			<template v-if="tags">
+			<template v-show="tags">
 				<div class="tagName">
 					<a :href="tagPageLink(tags)" target="_blank">
 						{{ tags }}
@@ -44,8 +44,9 @@
 			</template>
 
 			<div class="postsWrap">
+
 				<template v-if="jsonData.length">
-					<div class="postsWrap__single" v-for="item in jsonData">
+					<div class="postsWrap__single" v-for="item in jsonData" v-show="item.preview_file_url">
 						<div class="postImg">
 							<div>
 								<a :href="item.id" target="_blank">
@@ -55,13 +56,13 @@
 						</div>
 
 						<div class="postChainer">
-							<div class="postChainer__single" v-if="item.tag_string_character" @click="tagsCheck(item.tag_string_character)">
+							<div class="postChainer__single" v-show="item.tag_string_character" @click="tagsCheck(item.tag_string_character)">
 								he / she!
 							</div>
-							<div class="postChainer__single" v-if="item.tag_string_artist" @click="tagsCheck(item.tag_string_artist)">
+							<div class="postChainer__single" v-show="item.tag_string_artist" @click="tagsCheck(item.tag_string_artist)">
 								this artist!
 							</div>
-							<div class="postChainer__single" v-if="item.tag_string_copyright" @click="tagsCheck(item.tag_string_copyright)">
+							<div class="postChainer__single" v-show="item.tag_string_copyright" @click="tagsCheck(item.tag_string_copyright)">
 								this copyright!
 							</div>
 						</div>
@@ -73,6 +74,7 @@
 						<img src="img/notfound.jpg" alt="そんなもの ウチにはないよ…">
 					</div>
 				</template>
+				
 			</div>
 		</div>
 	</div>
@@ -86,7 +88,7 @@
 			isLoading:"",
 			isMovie:"",
 			tags:"",
-			url:danbooru+"/"+"posts.json?limit=210",
+			url:danbooru+"/"+"posts.json?limit=105",
 			modalUrl:"",
 			jsonData:"",
 			modalSwitch:false
@@ -96,13 +98,16 @@
 		},
 		methods:{
 			getPosts:function(url){
+				//ajaxでjsonを取得
 				this.setLoading("on");
 				axios.get(url)
 				.then(response => {
 					this.setLoading("off");
 					this.jsonData = response.data;
 					this.jsonData.map(function(value){
-						value["preview_file_url"] = danbooru+"/"+value["preview_file_url"];
+						if(value["preview_file_url"] != undefined){
+							value["preview_file_url"] = danbooru+"/"+value["preview_file_url"];
+						}
 						value["file_url"] = danbooru+value["file_url"];
 						value["id"] = danbooru+"/"+"posts/"+value["id"];
 						return value;
@@ -110,11 +115,13 @@
 				});
 			},
 			tagsSearch:function(tags){
+				//タグを渡してgetPostsを再実行
 				this.tags = tags;
 				this.url = danbooru + "/" +"posts.json?limit=105&tags="+this.tags;
 				this.getPosts(this.url);
 			},
 			tagsCheck:function(tags){
+				//タグにスペースが入っていた場合、先頭文字列のみにトリミング
 				if(~tags.indexOf("\u0020")){
 					this.tags = tags.substring(0,tags.indexOf("\u0020"));
 				} else{
@@ -123,10 +130,12 @@
 				this.tagsSearch(this.tags);
 			},
 			tagPageLink:function(tags){
+				//タグページへのリンクを生成
 				var utf8str = encodeURI(tags);
 				return danbooru + "/" + "?tags=" + utf8str;
 			},
 			setLoading:function(status){
+				//ローディングのon/off
 				if( status == "on" ){
 					this.isLoading = true;
 				} else if(status == "off"){
