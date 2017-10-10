@@ -109,7 +109,9 @@
 						if(value["preview_file_url"] != undefined){
 							value["preview_file_url"] = danbooru+"/"+value["preview_file_url"];
 						}
-						value["large_file_url"] = danbooru+value["large_file_url"];
+						if(value["large_file_url"] != undefined){
+							value["large_file_url"] = danbooru+value["large_file_url"];
+						}
 						value["file_url"] = danbooru+value["file_url"];
 						value["id"] = danbooru+"/"+"posts/"+value["id"];
 						return value;
