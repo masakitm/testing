@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app01">
+		<example
+			prop-a="100"
+			prop-b=[asdf:100]
+			prop-c="asfd"
+			prop-f="20"
+		></example>
+	</div>
+
+<script src="https://unpkg.com/vue"></script>
+<script>
+
+	Vue.component("example",{
+		template:"<div>{{ propA }} - {{ propB }} - {{ propC }} - {{ propD }} - {{ propE }} - {{ propF }}</div>",
+		props:{
+			propA:String,
+			propB:[String,Number],
+			propC:{
+				type: String,
+				required: true
+			},
+			propD:{
+				type:Number,
+				default: 100
+			},
+			propE:{
+				type: Object,
+				default:function(){
+					return { message:'hello' }
+				}
+			},
+			propF:{
+				validator: function(value){
+					return value > 10
+				}
+			}
+		}
+	});
+
+	new Vue({
+		el:"#app01",
+	});
+</script>
+</body>
+</html>

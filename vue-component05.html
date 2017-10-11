@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app01">
+		<bs-date-input
+			data-3d-date-picker="true"
+			class="date-picker-theme-dark"
+		></bs-date-input>
+	</div>
+
+<script src="https://unpkg.com/vue"></script>
+<script>
+
+	Vue.component("bs-date-input",{
+		template:'<input type="date" class="form-control">'
+	});
+
+	new Vue({
+		el:"#app01",
+	});
+</script>
+</body>
+</html>
