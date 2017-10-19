@@ -1,0 +1,19 @@
+{
+  "name": "webpack-demo3",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server"
+  },
+  "author": "tes",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.2"
+  },
+  "dependencies": {
+    "vue": "^2.5.2"
+  }
+}
