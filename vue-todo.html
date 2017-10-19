@@ -97,13 +97,13 @@
 		</header>
 
 		<transition name="fade01">
-			<template v-if="todos[1]">
+			<template v-if="todos[0]">
 				<div class="listWrap">
 					<div class="listWrap__single listWrap__single--todos">
 						<div class="subtit">TODO</div>
 						<ul class="todoList">
-							<li class="todoList__single" v-for="(todo,index) in todos" :key="todo.name" v-if="!todo.isDone && index !== 0 ">
-								{{ todo.name }}
+							<li class="todoList__single" v-for="(todo,index) in todos" :key="todo.name" v-if="!todo.isDone">
+									{{ todo.name }}
 								<span class="btns">
 									<button @click="doneTodo(index)">DONE!</button>
 									<button @click="removeTodo(index)">DELETE</button>
@@ -136,10 +136,6 @@
 		data:{
 			add:"",
 			todos:[
-				{
-					name:"",
-					isDone:false
-				}
 			]
 		},
 		methods:{
