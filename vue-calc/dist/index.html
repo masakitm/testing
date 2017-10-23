@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Calc</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+	<div class="calc">
+		<div class="screen">
+			{{ formula }}
+		</div>
+
+		<div class="buttons">
+			<button class="buttons__single" v-for="button in buttons" :class="button.class" @click="getBtn(button.value,button.is,button.callback)" class="buttons_single">
+				{{ button.value }}
+			</button>
+		</div>
+	</div>
+</div>
+<script src="bundle.js"></script>
+</body>
+</html>
