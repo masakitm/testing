@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+	<div id="app">
+		<div>
+			<input type="text" v-model="id" @input="idSet()" placeholder="見たい画像のidを入力">
+			<button @click="getPosts(url)">Search!</button>
+		</div>
+
+		<div v-if="source">
+			<a :href="source" target="_blank">
+				{{ source }} <br>
+				<img :src="prevImg" alt="">
+			</a>
+		</div>
+		<div v-else>
+			ソースが不明です
+			<div><img :src="prevImg" alt=""></div>
+		</div>
+	</div>
+
+
+<script>
+	const app = new Vue({
+		el:"#app",
+		data:{
+			id:"1",
+			source:"",
+			url:"https://danbooru.donmai.us/posts/1.json",
+			prevImg:""
+		},
+		mounted:function(){
+			this.getPosts(this.url);
+		},
+		methods:{
+			getPosts:function(){
+				axios.get(this.url)
+				.then(response => {
+					this.source = response.data.source;
+					this.prevImg = "https://danbooru.donmai.us"+response.data.preview_file_url;
+				});
+			},
+			idSet:function(){
+				this.url = "https://danbooru.donmai.us/posts/"+this.id+".json"
+				console.log(this.url);
+			}
+		}
+	});
+</script>
+</body>
+</html>

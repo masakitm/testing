@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css">
+	<title>The News App</title>
+</head>
+<body>
+	<div class="wrapper" id="app">
+		<h1 class="text-center">The News App</h1>
+
+		<div class="text-center">
+			posts count: {{ num_results }}　
+			<button @click="getPosts('home')">posts reload</button>
+		</div>
+
+		<div class="news-feed clearfix">
+			<div class="columns medium-3" v-for="result in results">
+				<div class="card">
+					<a :href="result.url" target="_blank">
+						<div class="card-divider">
+							{{ result.title }}
+						</div>
+						<div class="card-section">
+							{{ result.abstract }}
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<footer>
+			<div class="footer text-center">
+				{{ copyright }}
+			</div>
+		</footer>
+	</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+	const apiUrl = "https://api.nytimes.com/svc/topstories/v2/";
+	const apiKey = "dfa2b3842c0a44ddbba8cd650520ffb8";
+
+	function buildUrl(section){
+		return apiUrl + section + ".json?api-key=" + apiKey
+	}
+
+	const vm = new Vue({
+		el:"#app",
+		data:{
+			results:[
+				{
+					title: "タイトルが入ります",
+					abstract:"概要が入ります",
+				},
+			],
+			num_results:"",
+			copyright:""
+		},
+		created(){
+			this.getPosts("home");
+		},
+		methods:{
+			getPosts(section){
+				let url = buildUrl(section);
+				axios.get(url).then((response) => {
+					this.results = response.data.results;
+					this.copyright = response.data.copyright;
+					this.num_results = response.data.num_results
+				}).catch( error => {
+					console.log(error);
+				});
+			}
+		},
+		computed:{
+			processPosts(){
+				let posts = this.results;
+				posts.map(posts => {
+					let imgObj;
+				});
+			}
+		}
+	});
+</script>
+</body>
+</html>

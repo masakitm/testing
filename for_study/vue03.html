@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<template v-if="isActive">
+			<div v-if="count == 1">ルナだよ</div>
+			<div v-else-if="count == 2">ルナじゃよ</div>
+			<div v-else-if="count == 3">ルナやねん</div>
+			<div v-else>ルナちゃうわ</div>
+		</template>
+
+		<div>
+			<button v-on:click="toggle"></button>
+		</div>
+	</div>
+
+	<script>
+		var app = new Vue({
+			el:"#app",
+			data:{
+				isActive: false,
+				count:0
+			},
+			methods:{
+				toggle:function(){
+					this.isActive = true
+					this.count++
+				}
+			}
+		});
+	</script>
+</body>
+</html>
