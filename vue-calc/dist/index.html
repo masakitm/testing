@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Calc</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+	<div class="calc">
+		<div class="screen">
+			{{ formula }}
+		</div>
+
+		<div class="buttons">
+			<button class="buttons__single" @click="clearFormula()"> C </button>
+			<button class="buttons__single" @click="back"> BACK </button>
+			<button class="buttons__single" v-for="button in buttons" @click="getBtn(button)" class="buttons_single">
+				{{ button }}
+			</button>
+			<button class="buttons__single" @click="runCalc"> = </button>
+		</div>
+		
+	</div>
+</div>
+<script src="bundle.js"></script>
+</body>
+</html>

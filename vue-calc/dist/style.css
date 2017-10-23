@@ -1,0 +1,36 @@
+html, body {
+  background: #eee;
+  line-height: 1;
+  font-size: 18px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.screen {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  height: 3rem;
+  margin-bottom: 1rem;
+}
+
+.buttons {
+  font-size: 0;
+}
+
+.buttons__single {
+  border: 2px solid #eee;
+  background: #ddd;
+  width: 24%;
+  line-height: 3;
+  font-size: 1rem;
+}
+
+.inlineBtns {
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  flex-wrap: wrap;
+}
