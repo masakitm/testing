@@ -68,7 +68,7 @@
 					</div>
 				</template>
 
-				<template v-else>
+				<template v-else-if="!firstView && !jsonData.length">
 					<div class="notFound">
 						<img src="for_study/img/notfound.jpg" alt="そんなもの ウチにはないよ…">
 					</div>
@@ -83,6 +83,7 @@
 	const app = new Vue({
 		el:"#app",
 		data:{
+			firstView:true,
 			isLoading:"",
 			isMovie:"",
 			tags:"",
@@ -110,6 +111,7 @@
 				});
 			},
 			tagsSearch:function(tags){
+				this.firstView = false;
 				this.tags = tags;
 				this.url = danbooru + "/" +"posts.json?limit=105&tags="+this.tags;
 				this.getPosts(this.url);
