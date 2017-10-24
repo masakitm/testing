@@ -1,12 +1,12 @@
 <template>
   <div id="app">
 		<textarea name="name" rows="8" cols="80" v-model="inputTxt"></textarea>
-		<div class="">
-			<div class="">
+		<div class="texts">
+			<div class="texts__single">
 				{{ this.inputTxt }}
 			</div>
 
-			<div class="" v-if="this.inputTxt">
+			<div class="texts__single" v-if="this.inputTxt">
 				{{ this.reverseStr() }}
 			</div>
 		</div>
