@@ -1,5 +1,5 @@
 <template>
-  <div id="app2">
+  <div id="app">
     {{ this.appData.message }}
     asdfasd
   </div>
@@ -9,7 +9,7 @@
 import data from './data.json'
 
 export default {
-  name: 'app2',
+  name: 'app',
   data: function () {
     return {
       appData: data
@@ -19,7 +19,7 @@ export default {
 </script>
 
 <style>
-#app2 {
+#app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
