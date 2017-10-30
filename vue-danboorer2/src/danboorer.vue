@@ -1,17 +1,50 @@
 <template>
-  <container></container>
+  <div>
+    <div class="loading" v-show="isLoading">
+      <div class="spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+      </div>
+    </div>
+
+    <header>
+      <div class="titleWrap">
+        <h1 class="titleWrap__single"><a href="">danbooruer</a></h1>
+      </div>
+
+      <div class="seacher">
+        <input v-model="tags" @keyup.enter="tagsSearch(tags)" placeholder="ex:large_*">
+      </div>
+    </header>
+
+    <div class="wrapper">
+      <div class="tagName" v-show="tags">
+        <a :href="tagPageLink(tags)" target="_blank">
+            {{ tags }}
+        </a>
+      </div>
+
+      <postContainer
+        :items="this.jsonData"
+        :first-view="this.firstView"
+        @tag-from-child="tagsCheck"
+      ></postContainer>
+    </div>
+  </div>
 </template>
 
 <script>
 import axios from 'axios'
-// import loading from './loading.vue'
-import container from './container.vue'
+import postContainer from './postContainer.vue'
 const danbooru = 'https://danbooru.donmai.us'
 
 export default {
   name: 'danboorer',
   components: {
-    container
+    postContainer
   },
   data: function () {
     return {
