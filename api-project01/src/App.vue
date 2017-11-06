@@ -1,16 +1,21 @@
 <template>
   <div id="app">
-    <Apps/>
+
+    <Apps />
+    <Footer />
+
   </div>
 </template>
 
 <script>
 import Apps from './components/Apps'
+import Footer from './components/Footer'
 
 export default {
   name: 'app',
   components: {
-    Apps
+    Apps,
+    Footer
   }
 }
 </script>
