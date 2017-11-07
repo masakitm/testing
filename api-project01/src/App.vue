@@ -1,20 +1,18 @@
 <template>
   <div id="app">
-
-    <Apps />
+    <ApiSearch />
     <Footer />
-
   </div>
 </template>
 
 <script>
-import Apps from './components/Apps'
+import ApiSearch from './components/ApiSearch'
 import Footer from './components/Footer'
 
 export default {
   name: 'app',
   components: {
-    Apps,
+    ApiSearch,
     Footer
   }
 }

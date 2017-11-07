@@ -3,17 +3,19 @@
     <Loading :loading="this.loading"></Loading>
 
     <h1>{{ msg }}</h1>
+
     <div>
-      <p>
+      <div>
         <input type="text" @keyup.enter="getPosts(conpassApiUrl)" v-model="keyword">
         <select class="" name="" v-model="selectState" @change="getPosts(conpassApiUrl)">
           <option v-for="state in stateData" val="state.label">
             {{ state.label }}
           </option>
         </select>
-      </p>
+      </div>
+
       <p>
-        <button @click="getPosts(conpassApiUrl)">さがす</button>
+        <button @click="getPosts(conpassApiUrl)">Search!</button>
       </p>
 
       <div class="resultInfo" v-show="available">
@@ -68,13 +70,13 @@ const state = require('../state.json')
 Vue.use(VueJsonp)
 
 export default {
-  name: 'Apps',
+  name: 'ApiSearch',
   data () {
     return {
       asdf: true,
       msg: 'Connpass API検索',
       conpassApiUrl: 'https://connpass.com/api/v1/event/',
-      keyword: 'vue.js',
+      keyword: 'vue',
       googleApiUrl: 'https://maps.googleapis.com/maps/api/staticmap',
       googleApiKey: 'AIzaSyBvMTD_s_4107jBVh-ouuaTs0FE1IlDxVU',
       jsonData: '',
@@ -177,19 +179,36 @@ a {
   font-weight:bold;
 }
 
+
+button{
+  background: #42b983;
+  border: none;
+  color: #fff;
+  font-size:1.5rem;
+  padding: 0.5rem 2rem;
+  cursor:pointer;
+  border:1px solid  #42b983;
+  transition: 0.2s;
+
+  &:hover{
+    color: #42b983;
+    background: #fff;
+
+  }
+}
+
+
 input{
-  width: 40vw;
-  margin: 0 auto;
-  display: block;
+  width: 35vw;
+  display: inline-block;
   font-size: 1.2rem;
   border: 1px solid #ddd;
   padding: 10px 10px;
 }
 
 select{
-  width: 40vw;
+  width: 35vw;
   font-size: 1rem;
-  margin: 1rem auto 0;
   padding: 10px 10px;
   border-radius: 0;
   border: 1px solid #ddd;
@@ -199,10 +218,15 @@ select{
   -moz-appearance: none;
   appearance: none;
   vertical-align: top;
+  cursor:pointer;
+}
+
+p.subtit{
+  margin: 1rem auto 0.5rem;
 }
 
 .resultInfo{
-  margin-bottom: 2rem;
+  margin: 2rem auto;
 }
 
 .resultsWrap{
