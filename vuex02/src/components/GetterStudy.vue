@@ -4,6 +4,9 @@
       {{ doneTodoCount }}
     </div>
     <div class="">
+      {{ storeTextSearch(1) }}
+    </div>
+    <div class="">
       Store
       {{ count }}
       <button type="button" name="button" @click="increment()">+</button>
@@ -15,7 +18,7 @@
 
 <script>
 import Vue from 'vue'
-import Vuex, { mapState } from 'vuex'
+import Vuex, { mapState, mapGetters } from 'vuex'
 import Counter from './Counter.vue'
 Vue.use(Vuex)
 
@@ -32,20 +35,26 @@ const store = new Vuex.Store({
     decrement: state => state.count--
   },
   getters: {
-    doneTodos: state => {
+    doneTodos: (state, getters) => {
       return state.todos.filter(todo => todo.done)
+    },
+    getTodoById: (state, getters) => (id) => {
+      return state.todos.find(todo => todo.id === id)
     }
   }
 })
 
 export default {
-  name: 'vuex-study',
+  name: 'HelloWorld',
   computed: {
     doneTodoCount () {
       return store.getters.doneTodos.length
     },
     ...mapState([
       'count'
+    ]),
+    ...mapGetters([
+      'doneCount'
     ])
   },
   methods: {
@@ -54,6 +63,9 @@ export default {
     },
     decrement () {
       store.commit('decrement')
+    },
+    storeTextSearch (id) {
+      return store.getters.getTodoById(id).text
     }
   },
   store,
