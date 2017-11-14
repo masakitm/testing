@@ -75,6 +75,7 @@ export default {
           return value
         })
       })
+      console.log(this.jsonData)
     },
     tagsSearch: function (tags) {
       this.firstView = false
