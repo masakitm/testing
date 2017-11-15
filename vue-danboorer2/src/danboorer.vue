@@ -63,19 +63,19 @@ export default {
   },
   methods: {
     getPosts: function (url) {
-      this.setLoading('on')
+      const _this = this
+      _this.setLoading('on')
       axios.get(url)
       .then(response => {
-        this.setLoading('off')
-        this.jsonData = response.data
-        this.jsonData.map(function (value) {
+        _this.setLoading('off')
+        _this.jsonData = response.data
+        _this.jsonData.map(function (value) {
           value['preview_file_url'] = danbooru + '/' + value['preview_file_url']
           value['file_url'] = danbooru + value['file_url']
           value['id'] = danbooru + '/' + 'posts/' + value['id']
           return value
         })
       })
-      console.log(this.jsonData)
     },
     tagsSearch: function (tags) {
       this.firstView = false

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // import HelloWorld from '@/components/HelloWorld'
-import HelloWorld from '@/components/GetterStudy.vue'
+import HelloWorld from '@/components/mutationStudy.vue'
 Vue.use(Router)
 
 export default new Router({
