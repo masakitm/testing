@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <Bingo />
+    <mainPart />
   </div>
 </template>
 
 <script>
-import Bingo from './components/Bingo'
+import MainPart from './components/MainPart'
 
 export default {
   name: 'app',
   components: {
-    Bingo
+    MainPart
   }
 }
 </script>
