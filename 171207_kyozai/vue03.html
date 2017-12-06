@@ -9,25 +9,38 @@
 </head>
 <body>
   <!--  step3 -->
-  <div id="app">
-    <div>
-      step3
-      <select v-model="step3">
-        <option value="A">A</option>
-        <option value="B">B</option>
-        <option value="C">C</option>
-        <option value="すっごーい！">すっごーい！</option>
-      </select>
+  <div id="app" v-cloak>
+    <h1><a href="vue04.html">step3. v-ifを使った出し分け</a></h1>
+
+    <div class="contents">
+      <div>
+        <select v-model="step3">
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+          <option value="すっごーい！">すっごーい！</option>
+        </select>
+      </div>
+
       {{ step3 }}
 
-      <template v-if="step3 === 'C'">を選びましたね？</template>
+      <!-- v-ifはif文です。条件を満たすときのみ要素が可視化されます。 -->
+      <span v-if="step3 === 'C'">を選びましたね？</span>
 
+      <!-- <transition>タグを使って、v-ifで要素を出すときにcssアニメーションがつけられます。 -->
       <transition name="anime">
         <div class="box" v-if="step3 === 'すっごーい！'">
           <img src="https://stickershop.line-scdn.net/stickershop/v1/product/8412/LINEStorePC/main@2x.png" alt="">
         </div>
       </transition>
     </div>
+
+    <p>
+      selectタグでもv-modelは使えます。<br>
+      また、v-ifを使うとデータの内容に応じて要素の出し分けが出来ます。
+    </p>
+
+
   </div>
   <!--  /step3 -->
 <script>
@@ -42,37 +55,70 @@
 *{
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+a{
+  color: inherit;
+  text-decoration: none;
 }
 
 html,body{
   overflow: hidden;
+  line-height: 2;
+}
+
+input[type="text"]{
+  padding: 0.2rem;
+}
+
+.contents{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 #app{
+  text-align: center;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   width: 100vw;
   height: 100vh;
-  padding: 2rem;
+  padding: 5rem;
 }
 
 .box{
   padding: 1rem;
+  position: relative;
+  z-index: 10;
 }
 
 .anime-enter-active {
-  animation: anime-in .5s;
+  animation: anime-in 1s ease-in-out;
 }
 .anime-leave-active {
-  animation: anime-in .5s reverse;
+  animation: anime-in 1s ease-in-out reverse;
 }
 @keyframes anime-in {
   0% {
-    transform: translate(-100px,0);
+    /* transform: translate(-100px,0); */
+    transform: scale(0);
+  }
+  25% {
+    /* transform: translate(80px,0); */
+    transform: scale(1.8);
   }
   50% {
-    transform: translate(80px,0);
+    /* transform: translate(0px,0); */
+    transform: scale(0.5);
+  }
+  75% {
+    /* transform: translate(0px,0); */
+    transform: scale(1.1);
   }
   100% {
-    transform: translate(0px,0);
+    /* transform: translate(0px,0); */
+    transform: scale(1);
   }
 }
 </style>

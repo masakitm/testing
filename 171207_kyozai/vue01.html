@@ -10,18 +10,26 @@
 <body>
   <!--  step1 -->
   <div id="app">
-    <div>
-      step1
-      <input type="text" v-model="step1">
+    <h1><a href="vue02.html">step1. v-model</a></h1>
+
+    <div class="contents">
+      <div>
+        <input type="text" v-model="step1" placeholder="テキストを入力！">
+      </div>
        {{ step1 }}
     </div>
+
+    <p>
+      inputタグなどに v-model="データ名" という属性がつけられます。<br>
+      入力した値は動的にテキスト等へ反映させることが出来ます。
+    </p>
   </div>
   <!--  /step1 -->
 <script>
   new Vue({
-    el: '#app',
+    el: '#app', // jqueryの $(".hoge") の強化版。 この中身は全部vueで扱います、という宣言。
     data: {
-      step1: ''
+      step1: '' // データ倉庫。 data-original="asdfasdf" みたいなhtmlが不要になる。
     }
   })
 </script>
@@ -29,16 +37,36 @@
 *{
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+a{
+  color: inherit;
+  text-decoration: none;
 }
 
 html,body{
   overflow: hidden;
+  line-height: 2;
+}
+
+input[type="text"]{
+  padding: 0.2rem;
+}
+
+.contents{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 #app{
+  text-align: center;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   width: 100vw;
   height: 100vh;
-  padding: 2rem;
+  padding: 5rem;
 }
 </style>
 </body>

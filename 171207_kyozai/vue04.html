@@ -10,19 +10,24 @@
 <body>
   <div id="app" :style="rgbaText">
     <!--  step4 -->
-    <div>
-      step4
-      <button v-on:click="toggeleModal()">ここをクリック！</button>
+    <h1>step4. v-ifを使ったモーダル</h1>
 
-      <transition name="modal">
-        <div class="modal" v-if="step4 === true">
-          <div class="modal__bg" @click="toggeleModal()"></div>
-          <div class="modal__inner">
-            モーダルですわ！
-          </div>
-        </div>
-      </transition>
+    <div class="contents">
+      <button v-on:click="toggeleModal()">ここをクリック！</button>
     </div>
+    <transition name="modal">
+      <div class="modal" v-if="step4 === true"> <!-- step4の値がtrueだとモーダルが表示 -->
+        <div class="modal__bg" @click="toggeleModal()"></div>
+        <div class="modal__inner">
+          モーダルですわ！
+        </div>
+      </div>
+    </transition>
+
+    <p>
+      v-onを使って任意のタイミングで関数を発火できます。<br>
+      使う関数はmethodsの中に書きます。
+    </p>
     <!--  /step4 -->
   </div>
 <script>
@@ -33,7 +38,7 @@
     },
     methods: {
       toggeleModal() {
-        this.step4 = !this.step4
+        this.step4 = !this.step4 // true/false切り替え
       }
     }
   })
@@ -42,38 +47,36 @@
 *{
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+a{
+  color: inherit;
+  text-decoration: none;
 }
 
 html,body{
   overflow: hidden;
+  line-height: 2;
+}
+
+input[type="text"]{
+  padding: 0.2rem;
+}
+
+.contents{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 #app{
+  text-align: center;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   width: 100vw;
   height: 100vh;
-  padding: 2rem;
-}
-
-.box{
-  padding: 1rem;
-}
-.anime-enter-active, .anime-leave-active {
-  animation: anime-in .5s;
-}
-.anime-enter, .anime-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  animation: anime-in .5s reverse;
-}
-
-@keyframes anime-in {
-  0% {
-    transform: translate(-100px,0);
-  }
-  50% {
-    transform: translate(80px,0);
-  }
-  100% {
-    transform: translate(0px,0);
-  }
+  padding: 5rem;
 }
 
 .modal-enter-active, .modal-leave-active {
@@ -81,25 +84,6 @@ html,body{
 }
 .modal-enter, .modal-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0
-}
-
-.meters{
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  color: #fff;
-  padding: 1rem;
-  background: rgba(0,0,0,0.25);
-}
-
-input[type="range"]{
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  height: 2px;
-  vertical-align: 5px;
-  outline: none;
-  background: #000;
 }
 
 .modal{
