@@ -20,9 +20,11 @@
   "devDependencies": {
     "node-twitter": "^0.5.3",
     "twitter": "^1.7.1",
-    "vue": "^2.5.2",
-    "webpack": "^3.8.1",
-    "webpack-dev-server": "^2.9.3"
+    "vue": "^2.5.9",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.9.5"
   },
-  "dependencies": {}
+  "dependencies": {
+    "vue-cli": "^2.9.2"
+  }
 }

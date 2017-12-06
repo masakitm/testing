@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>vue01</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <!--  step1 -->
+  <div id="app">
+    <div>
+      step1
+      <input type="text" v-model="step1">
+       {{ step1 }}
+    </div>
+  </div>
+  <!--  /step1 -->
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      step1: ''
+    }
+  })
+</script>
+<style>
+*{
+  margin: 0;
+  padding: 0;
+}
+
+html,body{
+  overflow: hidden;
+}
+
+#app{
+  width: 100vw;
+  height: 100vh;
+  padding: 2rem;
+}
+</style>
+</body>
+</html>
