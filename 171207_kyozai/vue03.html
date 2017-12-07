@@ -24,10 +24,10 @@
 
       {{ step3 }}
 
-      <!-- v-ifはif文です。条件を満たすときのみ要素が可視化されます。 -->
-      <span v-if="step3 === 'C'">を選びましたね？</span>
+      <!-- v-ifは条件を満たすときに要素が可視化するif文です。 -->
+      <span v-if="step3 === 'C'">を選ぶとこのテキストが表示されます</span>
 
-      <!-- <transition>タグを使って、v-ifで要素を出すときにcssアニメーションがつけられます。 -->
+      <!-- <transition>タグを使うとv-ifにcssアニメーションがつけられます。 -->
       <transition name="anime">
         <div class="box" v-if="step3 === 'すっごーい！'">
           <img src="https://stickershop.line-scdn.net/stickershop/v1/product/8412/LINEStorePC/main@2x.png" alt="">
