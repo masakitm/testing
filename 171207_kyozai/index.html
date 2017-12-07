@@ -4,36 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>vue01</title>
-  <script src="https://unpkg.com/vue"></script>
+  <title>Document</title>
 </head>
 <body>
-  <!--  /step2 -->
   <div id="app">
-    <h1><a href="vue03.html">step2. v-html</a></h1>
-
-    <div class="contents">
+      <h1><a href="vue01.html">Vue.jsを勉強しよう！</a></h1>
       <div>
-        <input type="text" v-model="step2" placeholder="ex:<b>bold text</b>">
+        <img src="img.png" alt="">
       </div>
-      {{ step2 }}
-      <div v-html="step2"></div>
-    </div>
-
-    <p>
-      v-modelでバインドしたデータはそのままテキスト出力できますが、<br>
-      v-html="データ名" を使ってhtmlとして出力することもできます。
-    </p>
   </div>
-  <!--  /step2 -->
-<script>
-  new Vue({
-    el: '#app',
-    data: {
-      step2: ''
-    }
-  })
-</script>
 <style>
 *{
   margin: 0;
@@ -47,7 +26,6 @@ a{
 }
 
 html,body{
-  overflow: hidden;
   line-height: 2;
 }
 

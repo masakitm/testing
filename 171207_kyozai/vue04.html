@@ -10,11 +10,12 @@
 <body>
   <div id="app" :style="rgbaText">
     <!--  step4 -->
-    <h1>step4. v-ifを使ったモーダル</h1>
+    <h1>step4. v-on,v-ifを使ったモーダル</h1>
 
     <div class="contents">
       <button v-on:click="toggeleModal()">ここをクリック！</button>
     </div>
+
     <transition name="modal">
       <div class="modal" v-if="step4 === true"> <!-- step4の値がtrueだとモーダルが表示 -->
         <div class="modal__bg" @click="toggeleModal()"></div>
@@ -25,8 +26,9 @@
     </transition>
 
     <p>
-      v-onを使って任意のタイミングで関数を発火できます。<br>
-      使う関数はmethodsの中に書きます。
+      v-onはjQueryの$('hoge').onに似ています。<br>
+      今回の関数はボタンを押すとdata内step4のtrue/falseが切り替わるだけですが、<br>
+      v-ifが勝手にモーダルを出し分けてくれます。
     </p>
     <!--  /step4 -->
   </div>
@@ -38,7 +40,7 @@
     },
     methods: {
       toggeleModal() {
-        this.step4 = !this.step4 // true/false切り替え
+        this.step4 = !this.step4 // data内step4 のtrue/false切り替え
       }
     }
   })
