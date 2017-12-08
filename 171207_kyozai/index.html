@@ -9,8 +9,26 @@
 <body>
   <div id="app">
       <h1><a href="vue01.html">Vue.jsを勉強しよう！</a></h1>
-      <div>
-        <img src="img.png" alt="">
+
+      <div class="df">
+        <div><img src="img01.png" alt=""></div>
+        <div>
+          <h2>jQueryはすべてDOM依存</h2>
+          <p>関連する要素全部に<br>処理をかかなきゃいけない</p>
+        </div>
+      </div>
+
+      <div class="df">
+        <div><img src="img02.png" alt=""></div>
+        <div>
+          <h2>Vue.js, Reactはストア（データ）依存</h2>
+          <p>中央データ倉庫のようなもの（ストア）があり<br>そこのデータを元にJSがHTMLを生成</p>
+          <p>主がJS、従がHTML</p>
+          <br>
+          <p>HTMLに設定を書いておけば<br>JSでデータ変更時に勝手に変わる</p>
+          <br>
+          <p>（長いjsがとても書きやすい！）</p>
+        </div>
       </div>
   </div>
 <style>
@@ -18,6 +36,27 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+h1{
+  margin-bottom: 3rem;
+}
+
+.df{
+  width: 70%;
+  margin: 0 auto;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  align-items: center;
+}
+
+.df > *{
+  width: 50%;
+}
+
+.df + .df{
+  margin-top: 6rem;
 }
 
 a{
@@ -43,8 +82,8 @@ input[type="text"]{
 #app{
   text-align: center;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  width: 100vw;
-  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
   padding: 5rem;
 }
 </style>
