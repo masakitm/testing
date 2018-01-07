@@ -1,0 +1,177 @@
+body{
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+a{
+  color: inherit;
+  text-decoration: none;
+}
+
+.rssFeed{
+  &__single{
+    & + &{
+    }
+  }
+}
+
+.categoryName{
+  display: inline-block;
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  background: #eee;
+  line-height: 1;
+  margin: 0 0 0 0.5rem;
+  vertical-align: 0.2rem;
+  color: #fff;
+  font-weight: bold;
+}
+
+.rssLink{
+  position: relative;
+  display: block;
+  padding: 2.5rem 2rem;
+  margin: 0 auto;
+  border-bottom: 3px solid #3B8070;
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: 0.2s;
+
+  &:hover{
+    background: #3B8070;
+    color: #fff;
+  }
+}
+
+.rssCategory{
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 1rem;
+
+  &--headline{
+    color: #fff;
+    padding: 0.2rem 0.5rem;
+    background: #3B8070;
+  }
+}
+
+h1{
+  line-height: 3;
+}
+
+.catNav{
+  display: flex;
+  flex-wrap: nowrap;
+
+  &__single{
+    color: #fff;
+    font-weight: bold;
+    width: calc(100% / 7);
+
+    .link{
+      display: block;
+      padding: 1rem 0;
+      transition: 0.2s;
+
+      &:hover{
+        opacity: 0.7;
+      }
+    }
+  }
+}
+
+$kokunai: #3B8070;
+$kokusai: #00bcd4;
+$business: #3f51b5;
+$seiji: #673ab7;
+$entame: #db4437;
+$sports: #e91e63;
+$technology: #ff9800;
+
+[category="国内"]{
+  background: $kokunai;
+}
+
+[category="国際"]{
+  background: $kokusai;
+}
+
+[category="ビジネス"]{
+  background: $business;
+}
+
+[category="政治"]{
+  background: $seiji;
+}
+
+[category="エンタメ"]{
+  background: $entame;
+}
+
+[category="スポーツ"]{
+  background: $sports;
+}
+
+[category="テクノロジー"]{
+  background: $technology;
+}
+
+[category-single="国内"]{
+  border-color: $kokunai;
+
+  &:hover{
+    background: $kokunai;
+  }
+}
+
+[category-single="国際"]{
+  border-color: $kokusai;
+
+  &:hover{
+    background: $kokusai;
+  }
+}
+
+[category-single="ビジネス"]{
+  border-color: $business;
+
+  &:hover{
+    background: $business;
+  }
+}
+
+[category-single="政治"]{
+  border-color: $seiji;
+
+  &:hover{
+    background: $seiji;
+  }
+}
+
+[category-single="エンタメ"]{
+  border-color: $entame;
+
+  &:hover{
+    background: $entame;
+  }
+}
+
+[category-single="スポーツ"]{
+  border-color: $sports;
+
+  &:hover{
+    background: $sports;
+  }
+}
+
+[category-single="テクノロジー"]{
+  border-color: $technology;
+
+  &:hover{
+    background: $technology;
+  }
+}

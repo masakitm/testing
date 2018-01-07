@@ -1,0 +1,160 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.categoryName {
+  display: inline-block;
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  background: #eee;
+  line-height: 1;
+  margin: 0 0 0 0.5rem;
+  vertical-align: 0.2rem;
+  color: #fff;
+  font-weight: bold;
+}
+
+.rssLink {
+  position: relative;
+  display: block;
+  padding: 2.5rem 2rem;
+  margin: 0 auto;
+  border-bottom: 3px solid #3B8070;
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.rssLink:hover {
+  background: #3B8070;
+  color: #fff;
+}
+
+.rssCategory {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 1rem;
+}
+
+.rssCategory--headline {
+  color: #fff;
+  padding: 0.2rem 0.5rem;
+  background: #3B8070;
+}
+
+h1 {
+  line-height: 3;
+}
+
+.catNav {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.catNav__single {
+  color: #fff;
+  font-weight: bold;
+  width: calc(100% / 7);
+}
+
+.catNav__single .link {
+  display: block;
+  padding: 1rem 0;
+  transition: 0.2s;
+}
+
+.catNav__single .link:hover {
+  opacity: 0.7;
+}
+
+[category="国内"] {
+  background: #3B8070;
+}
+
+[category="国際"] {
+  background: #00bcd4;
+}
+
+[category="ビジネス"] {
+  background: #3f51b5;
+}
+
+[category="政治"] {
+  background: #673ab7;
+}
+
+[category="エンタメ"] {
+  background: #db4437;
+}
+
+[category="スポーツ"] {
+  background: #e91e63;
+}
+
+[category="テクノロジー"] {
+  background: #ff9800;
+}
+
+[category-single="国内"] {
+  border-color: #3B8070;
+}
+
+[category-single="国内"]:hover {
+  background: #3B8070;
+}
+
+[category-single="国際"] {
+  border-color: #00bcd4;
+}
+
+[category-single="国際"]:hover {
+  background: #00bcd4;
+}
+
+[category-single="ビジネス"] {
+  border-color: #3f51b5;
+}
+
+[category-single="ビジネス"]:hover {
+  background: #3f51b5;
+}
+
+[category-single="政治"] {
+  border-color: #673ab7;
+}
+
+[category-single="政治"]:hover {
+  background: #673ab7;
+}
+
+[category-single="エンタメ"] {
+  border-color: #db4437;
+}
+
+[category-single="エンタメ"]:hover {
+  background: #db4437;
+}
+
+[category-single="スポーツ"] {
+  border-color: #e91e63;
+}
+
+[category-single="スポーツ"]:hover {
+  background: #e91e63;
+}
+
+[category-single="テクノロジー"] {
+  border-color: #ff9800;
+}
+
+[category-single="テクノロジー"]:hover {
+  background: #ff9800;
+}
