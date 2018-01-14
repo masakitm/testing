@@ -1,0 +1,10 @@
+{
+  "name": "nuxt01",
+  "scripts": {
+    "dev": "nuxt",
+    "start": "nuxt"
+  },
+  "dependencies": {
+    "nuxt": "^1.0.0-rc11"
+  }
+}
